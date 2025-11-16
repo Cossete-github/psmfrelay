@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PS作品DQRTAマイフレンズリレーWEBサイトデモ</title>
+    <base target="_self">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style id="css-common">
+
+        main {
+            /*
+            background: url("https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?_gl=1*hjnful*_ga*MTcyNTEwNjAyMi4xNzU1Njg4OTQ5*_ga_8JE65Q40S6*czE3NTU2ODg5NDgkbzEkZzEkdDE3NTU2ODg5NTMkajU1JGwwJGgw") no-repeat 0 0;
+            */
+            background-color: rgba(255,243,247,0.5);
+            background-blend-mode: lighten;
+            background-size: 100vw;
+
+            min-height: 100vh;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: min-content auto;
+            align-items: start;
+        }
+
+        #sidebar-wrapper {
+            display: block;
+            height: 100vh;
+            min-width: 8rem;
+            border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+            position: sticky;
+            top: 0px;
+            z-index: 826;
+            background-color: white;
+        }
+
+        #sidebar {
+        }
+
+            #sidebar > nav {
+                display: block;
+                height: 100vh;
+                min-height: 0 !important;
+                max-height: min(auto, 100vh);
+                overflow-y: scroll;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                border: 0;
+            }
+
+                #sidebar > nav::-webkit-scrollbar {
+                    display: none;
+                }
+
+                #sidebar > nav > a {
+                    width: 100%;
+                }
+
+                    #sidebar > nav > a:hover {
+                        color: deepskyblue;
+                    }
+
+        @media screen and (max-width: 768px) {
+            .grid {
+                grid-template-columns: auto;
+            }
+
+            #sidebar-wrapper {
+                height: auto;
+                width: 100%;
+                border-right: 0 !important;
+            }
+
+            #sidebar {
+                border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+            }
+
+                #sidebar > nav {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    height: auto;
+                    max-height: 12.5vh;
+                }
+
+                    #sidebar > nav > a {
+                        border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+                        border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+                        width: auto;
+                    }
+        }
+
+        main > section {
+            padding: .5rem .5rem 0 .5rem;
+        }
+
+        section[content]:not(.show) {
+            display: none !important;
+        }
+    </style>
+    <style>
+
+        input[type="text"],
+        input[type="text"]:focus {
+            width: 100%;
+            background: transparent;
+            border: none !important;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        i:has(+input[type="text"]:not(:invalid))::before {
+            content: "";
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='green' class='bi bi-check2-circle' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0'/%3E%3Cpath d='M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+
+        input[type="text"]:not(:invalid) {
+            width: calc(100% - 24px);
+        }
+
+        .window {
+            border: 1px solid white;
+            border-radius: 0.5rem;
+            background-color: black;
+            color: white;
+            font-size: 32px;
+        }
+
+            .window p {
+                margin: 0;
+                padding: 0;
+            }
+
+            .window input[type="radio"] {
+                opacity: 0;
+                -webkit-appearance: none;
+                appearance: none;
+                position: absolute;
+            }
+
+            .window input[type="radio"] {
+                display: inline-block;
+                content: "";
+                width: 32px;
+                height: 32px;
+                border-radius: 0;
+            }
+
+            .window label {
+                margin-left: 32px;
+                height: 32px;
+                width: calc(100% - 32px);
+            }
+
+            .window input[type="radio"][yes] ~ label::after {
+                content: "はい";
+            }
+
+            .window input[type="radio"][no] ~ label::after {
+                content: "いいえ";
+            }
+
+            .window input[type="radio"]:not(:checked) + span:has(+label:hover)::before {
+                display: inline-block;
+                content: "";
+                width: 32px;
+                height: 32px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+            }
+
+            .window input[type="radio"]:not(:checked) ~ label:hover {
+                margin-left: 0;
+            }
+
+            .window input[type="radio"]:checked + span::before {
+                display: inline-block;
+                content: "";
+                width: 32px;
+                height: 32px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='gold' class='bi bi-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+            }
+
+            .window input[type="radio"]:checked ~ label {
+                margin-left: 0;
+            }
+
+
+            .window:has(input[type="radio"][yes]:checked) ~ div > * {
+                display: auto;
+            }
+
+            .window:not(:has(input[type="radio"][yes]:checked)) ~ div > * {
+                display: none !important;
+            }
+    </style>
+    <style>
+        #form-urakata div[question] {
+            width: min(100%, 40rem);
+            margin-top: 3rem;
+            display: block;
+        }
+        #urakata-role:not(:has(#mirror:checked)) ~ [mirror] {
+            display: none !important;
+        }
+        #urakata-role:not(:has(#time-keeper:checked)) ~ [tk] {
+            display: none !important;
+        }
+    </style>
+    <style>
+        .bi-nico {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cg id='tvchan_silhouette_svg__site-icon_sp' stroke='black' stroke-width='1' fill='black' fill-rule='evenodd'%3E%3Cpath d='M19.213 4.724h-5.816l2.388-2.275a.852.852 0 00.041-1.182.802.802 0 00-1.153-.043L11 4.724l-3.673-3.5a.802.802 0 00-1.153.043.85.85 0 00.042 1.182l2.387 2.275H2.788A1.8 1.8 0 001 6.535v10.863c0 1 .802 1.812 1.788 1.812h2.266l1.35 1.59a.518.518 0 00.816 0l1.35-1.59h4.86l1.35 1.59a.518.518 0 00.816 0l1.35-1.59h2.266c.99 0 1.788-.811 1.788-1.812V6.535c0-1-.799-1.81-1.787-1.81' id='tvchan_silhouette_svg__Fill-1' fill='%23FFF'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+         }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <nav id="sidebar-nav" class="list-group rounded-0 text-sm-start">
+                    <a href="#home" class="list-group-item text-truncate"><i class="bi bi-house"></i><span> 主催挨拶</span></a>
+                    <a href="#calendar" class="list-group-item text-truncate"><i class="bi bi-calendar"></i><span> 日程</span></a>
+                    <a href="#form-runner" class="list-group-item text-truncate"><i class="bi bi-controller"></i><span> 走者募集フォーム</span></a>
+                    <a href="#form-urakata" class="list-group-item text-truncate"><i class="bi bi-hourglass-split"></i><span> 裏方募集フォーム</span></a>
+                    <a href="#regulations" class="list-group-item text-truncate"><i class="bi bi-clipboard2-check"></i><span> レギュレーション</span></a>
+                    <a href="https://www.youtube.com/@マイフレンズリレー" target="_blank" rel="noopener noreferrer" class="list-group-item text-truncate"><i class="bi bi-youtube"></i><span> 公式YouTube</span></a>
+                    <a href="https://www.twitch.tv/myfriendsrelay" target="_blank" rel="noopener noreferrer" class="list-group-item text-truncate"><i class="bi bi-twitch"></i><span> 公式Twitch</span></a>
+                    <a href="https://www.nicovideo.jp/user/142265079" target="_blank" rel="noopener noreferrer" class="list-group-item text-truncate"><i class="bi bi-nico"></i><span> 公式ニコ動</span></a>
+                    <a href="https://x.com/psdq_mfrelay" target="_blank" rel="noopener noreferrer" class="list-group-item text-truncate"><i class="bi bi-twitter-x"></i><span> 公式X</span></a>
+                </nav>
+            </aside>
+        </div>
+        <div id="main-wrapper">
+            <main>
+                <div class="page-header pt-3">
+                    <h2>PS作品DQRTAマイフレンズリレー</h2>
+                </div>
+                <hr>
+                <section content id="home">
+                    <h4>主催挨拶</h4>
+                    <article style="margin-top: 3rem;">
+                        <p>PSDQマイフレンズリレー公式サイトご覧の皆さんこんばんは。</p>
+                        <p>運営長のジャックです。</p>
+                        <p>まずこの大会の開催を決定できてとてもうれしく思います。</p>
+                        <p>普段あまり日の目を見ないPS版DQ作品に着目してPS版DQ界隈を盛り上げようということでこの企画が立ちました。</p>
+                        <p>今回は王道のPSナンバリング作品の採用となりました。PS作品メインで走られている方も、普段走られない方もこの企画を通じてPS作品に触れてもらえればとてもうれしいです。</p>
+                        <p>企画名にもある通りマイフレンズ（私の友達たち）を誘い合ってぜひご参加をお待ちしております！</p>
+                    </article>
+                </section>
+                <section content id="calendar">
+                    <h4>日程</h4>
+                    <article>
+                        <p>【12月5日(金)】 夜 走者発表</p>
+                        <p>【5月2日(土)】 9:00 開会式 10:00 出走(作品順5-8-4-7)</p>
+                    </article>
+                </section>
+                <section content id="form-runner">
+                    <h4>走者募集フォーム</h4>
+                    <article>
+                        <form>
+                            <div style="width: min(100%, 40rem); margin-top:3rem; display: block;">
+                                <p>代表者のお名前とDiscordのユーザー名を記入お願いします。</p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_name" id="leader_name" placeholder="お名前" required />
+                                            </td>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_id" id="leader_id" placeholder="Discordユーザー名" required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: block;">
+                                <p>各作品を担当する走者のお名前とURLの記入をお願いします。</p>
+                                <p>また、運営へのお手伝いとして裏方作業をするメンバーを一人選んでください。</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:15%;">担当作品</th>
+                                            <th style="width:25%;">走者名</th>
+                                            <th style="width:40%;">配信URL</th>
+                                            <th style="width:20%;">お手伝い</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>DQ4</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name4" name="name4" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url4" name="url4" placeholder="https://xxx.xxx" required />
+                                            </td>
+                                            <td class="form-group" style="text-align:center;">
+                                                <input class="form-check-input" type="radio" name="radio_u" id="radio_u4" value="DQ4" required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>DQ5</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name5" name="name5" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url5" name="url5" placeholder="https://xxx.xxx" required />
+                                            </td>
+                                            <td class="form-group" style="text-align:center;">
+                                                <input class="form-check-input" type="radio" name="radio_u" id="radio_u5" value="DQ5" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>DQ7</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name7" name="name7" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url7" name="url7" placeholder="https://xxx.xxx" required />
+                                            </td>
+                                            <td class="form-group" style="text-align:center;">
+                                                <input class="form-check-input" type="radio" name="radio_u" id="radio_u7" value="DQ7" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>DQ8</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name8" name="name8" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url8" name="url8" placeholder="https://xxx.xxx" required />
+                                            </td>
+                                            <td class="form-group" style="text-align:center;">
+                                                <input class="form-check-input" type="radio" name="radio_u" id="radio_u8" value="DQ8" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: flex; flex-wrap: nowrap;">
+                                <div class="window" style="width: 256px; margin: 0 auto;">
+                                    <div style="margin-left:32px;font-size:16px;">
+                                        <p>運営「円滑な大会運営に</p>
+                                        <p>ご協力くださいますか？</p>
+                                    </div>
+                                    <hr style="margin:0;" />
+                                    <p>
+                                        <input type="radio" name="window_yesno" id="window-yes" value="yes" yes /><span></span><label for="window-yes"></label>
+                                    </p>
+                                    <p>
+                                        <input type="radio" name="window_yesno" id="window-no" value="no" no checked /><span></span><label for="window-no"></label>
+                                    </p>
+                                </div>
+                                <div style="text-align:center;">
+                                    <div>
+                                        <p>回答内容をご確認の上、誤りがなければ</p>
+                                        <p>下記ボタンを押してください。</p>
+                                        <button type="submit" class="btn btn-outline-primary">回答を送信</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 12rem;"></p>
+                        </form>
+                    </article>
+                </section>
+                <section content id="form-urakata">
+                    <h4>裏方募集フォーム</h4>
+                    <article>
+                        <form>
+                            <div question>
+                                <p>お名前とDiscordのユーザー名を記入お願いします。</p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="urakata_name" id="urakata-name" placeholder="お名前" required />
+                                            </td>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="urakata_id" id="urakata-id" placeholder="Discordユーザー名" required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div question id="urakata-role">
+                                <p>お手伝いしていただけるお仕事(複数回答可)</p>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="mirror" id="mirror" name="mirror" />
+                                    <label class="form-check-label" for="mirror">ミラー</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="time-keeper" id="time-keeper" name="timekeeper" />
+                                    <label class="form-check-label" for="time-keeper">TK (タイムキーパー)</label>
+                                </span>
+                            </div>
+                            <div question id="mirror-experience-box" mirror>
+                                <p>[ミラー班限定]ミラー経験</p>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="mirror_experience" id="mirror-experience-yes" value="yes" />
+                                    <label class="form-check-label" for="flexRadioDefault1">あり</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="mirror_experience" id="mirror-experience-no" value="no" />
+                                    <label class="form-check-label" for="flexRadioDefault2">なし</label>
+                                </span>
+                           </div>
+                           <div question id="mirror-sites" mirror>
+                                <p>[ミラー班限定]ミラー可能動画配信サイト(複数回答可)</p>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="mirror-youtube" id="mirror-youtube" name="mirror_youtube" />
+                                    <label class="form-check-label" for="mirror">YouTube</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="mirror-niconico" id="mirror-niconico" name="mirror_nico" />
+                                    <label class="form-check-label" for="recorder">ニコニコ動画</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="mirror-twitch" id="mirror-twitch" name="mirror_twitch" />
+                                    <label class="form-check-label" for="time-keeper">Twicth</label>
+                                </span>
+                            </div>
+                            <div question tk>
+                                <p>[TK班限定]6時間(or3時間を2回)を1枠としますが、どの程度お手伝いしていただけますか？</p>
+                                <p>1. 時間</p>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="tk_h" value="tk-3h" id="tk-3h" />
+                                    <label class="form-check-label" for="mirror">3時間</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="tk_h" value="tk-6h" id="tk-6h" />
+                                    <label class="form-check-label" for="recorder">6時間</label>
+                                </span>
+                            </div>
+                            <div question tk>
+                                <p>2. 枠数</p>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="tk_waku" value="tk-1" id="tk-1" />
+                                    <label class="form-check-label" for="mirror">1枠</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="tk_waku" value="tk-2" id="tk-2" />
+                                    <label class="form-check-label" for="recorder">2枠</label>
+                                </span>
+                                <span class="form-check">
+                                    <input class="form-check-input" type="radio" name="tk_waku" value="tk-3more" id="tk-3more" />
+                                    <label class="form-check-label" for="time-keeper">3枠以上</label>
+                                </span>
+                            </div>
+                            <div question>
+                                <p>自由記入欄(スケジュールの要望や質問など)</p>
+                                <textarea class="form-control" style="height: 6rem;" id="urakata-free" name="urakata_free"></textarea>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem;">
+                                <div>
+                                    <p>回答内容をご確認の上、誤りがなければ</p>
+                                    <p>下記ボタンを押してください。</p>
+                                    <button type="submit" class="btn btn-outline-primary">回答を送信</button>
+                                </div>
+                            </div>
+                            <p style="margin-top: 12rem;"></p>
+                        </form>
+                    </article>
+                </section>
+                <section content id="regulations">
+                    <h4>レギュレーション</h4>
+                    <p class="lead">※本番までに更新される可能性があります。</p>
+                    <article>
+                        <b>全作品共通</b>
+                        <div>
+                            <p>禁止行為について</p>
+                            <ul>
+                                <li>禁止行為が発覚した場合、運営の協議の元、タイム加算/失格/その他のペナルティを課す場合があります。</p>
+                            </ul>
+                            <p>用語の定義</p>
+                            <ul>
+                                <li>メタル: [メタルスライム, はぐれメタル, メタルキング, プラチナキング, メタルスライムS]のこと。
+                            </ul>
+                        </div>
+                        <div>
+                            <p>禁止</p>
+                            <ul>
+                                <li>意図的な状況再現および乱数調整と疑わしい行為</li>
+                                <li>カジノでの、景品交換以外でのコインの使用</li>
+                            </ul>
+                        </div>
+                        <b>DQ4</b>
+                        <div>
+                            <p>禁止</p>
+                            <ul>
+                                <li>
+                                    リセット後に再現切りをせずメタルから経験値を得る行為<br />
+                                    ただし、2章に限り、後述のメタル狩りの手順に従う場合は許可する。<br />
+                                    手順からそれた場合、メタルから経験値を得る前に再現切りを行うか、<br />
+                                    リセットをしなければならない。<br />
+                                </li>
+                            </ul>
+                            <p>許可</p>
+                            <ul>
+                                <li>リセット(任意のタイミングで許可)</li>
+                                <li>架け橋の塔リレミトによる即降り</li>
+                                <li>馬車殴り</li>
+                                <li>ブランカ防具屋バグ</li>
+                                <li>階段浮遊バグ</li>
+                                <li>バロンリレミト</li>
+                            </ul>
+                            <p>再現切りの手順例</p>
+                            <ul>
+                                <li>不規則に移動するNPCがいるフロアを累計3秒以上不規則に歩く</li>
+                            </ul>
+                            <p>2章メタル狩り手順</p>
+                            <ul>
+                                <li>1. 速やかにフィールドに出て、エンカを出す。</li>
+                                <li>2. メタル以外が出現した場合、全体逃げをする。味方キャラのHPが0になった場合はリセットする。</li>
+                                <li>
+                                    メタルの1ターン目は全員聖水を使用し、2ターン目はアリーナ聖水、他2人打撃とする。<br />
+                                    撃破した場合は速やかにエンドールに戻り、リセットまたは再現切りをする。それまで次のメタルを倒してはならない。
+                                </li>
+                                <li>
+                                    3. メタル以外との戦闘後、味方のHPが全快でない場合、まんたんで全快(味方キャラ全ての現在HPがそれぞれの最大HPと等しい状態)にする。<br />
+                                    全快にならなかった場合は速やかにエンドールに戻り、リセットまたは再現切りをする。それまで次のメタルを倒してはならない。
+                                </li>
+                                <li>4. 速やかに次のエンカを出す。</li>
+                                <li>2から4を繰り返す</li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <b>DQ5</b>
+                        <div>
+                            <p>禁止</p>
+                            <ul>
+                                <li>アイテム増殖および空売り</li>
+                                <li>オープントレイ技</li>
+                                <li>デバッグルームへの侵入</li>
+                                <li>ベラおよび主人公のAI変更</li>
+                                <li>スティックバグ(R3入力でZ座標を自由に移動できる状態)</li>
+                            </ul>
+                            <p>許可</p>
+                            <ul>
+                                <li>ドラゴンの杖の2本取り</li>
+                                <li>トロッコ洞窟の壁抜け</li>
+                                <li>エルヘブンの床落ち</li>
+                                <li>NPCとの壁越しでの会話</li>
+                                <li>戦闘中の死者発生後のスカラつなぎ</li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <b>DQ7</b>
+                        <div>
+                            <p>エンディングでループしたときとかオルゴ撃破から20分を完走タイムとみなす的な文言入れたいね</p>
+                            <p>禁止</p>
+                            <ul>
+                                <li>プロビナ飛ばしなどの、ストーリーを破壊するバグの利用</li>
+                                <li>アニメティカの使用などによるセーブデータの改ざん</li>
+                                <li>アルティメットヒッツ版(SLPM-87378および87379)以外の使用</li>
+                                <li>
+                                    水のアミュレット入手後、リセット後に後述の再現切りを行わず<br />
+                                    メタルから経験値を得るまたはラスボスを撃破する行為
+                                </li>
+                            </ul>
+                            <p>許可</p>
+                            <ul>
+                                <li>はなす技</li>
+                                <li>バロックタワーや世界一高い塔などの、ストーリーを破壊しない範囲での壁抜け</li>
+                                <li>せかいじゅのしずくの複数購入</li>
+                                <li>パーティーメンバーの入れ替えによる、せかいじゅの葉の増殖</li>
+                                <li>水のアミュレット入手前のリセット</li>
+                            </ul>
+                            <p>再現切りの手順例</p>
+                            <ul>
+                                <li>不規則に動くNPCがいるフロアを累計3秒以上不規則に歩く</li>
+                            </ul>
+                            <p>その他</p>
+                            <ul>
+                                <li>
+                                    ラスボス撃破後、フリーズした場合や、ロード不良によってエンディングの部分的あるいは全体のスキップが確認された場合は、<br />
+                                    最後の「やっつけた！」の表示タイム+20分を完走タイムとみなす。
+                                </li>
+                            </ul>
+                        </div>
+                        <hr />
+                        <b>DQ8</b>
+                        <div>
+                            <p>禁止</p>
+                            <ul>
+                                <li>
+                                    人(NPCおよびPC)や物、地面などをすり抜ける操作(船落ち、ジョロの実貫通バグなど)<br />
+                                    ただし、その後速やかに[全滅, リレミト, 任意の場所にルーラ/キメラのつばさ/かぜのぼうし]のいずれかを行った場合は不問とする。
+                                </li>
+                                <li>連射スルーバグ</li>
+                            </ul>
+                            <p>許可</p>
+                            <ul>
+                                <li>イエローオーブ先取り</li>
+                                <li>世界樹の葉を錬金釜に入れることによる複数購入</li>
+                                <li>高台全滅バグ</li>
+                                <li>薬草園の洞窟の坂の斜め走法による逆走</li>
+                            </ul>
+                        </div>
+                    </article>
+                </section>
+                <section content id="error">
+                    その方向には ダレモイナイ。
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script id="router-script">
+        class router {
+            static clearContent = () => document.querySelectorAll('section[content]').forEach(e => e.classList.remove('show'));
+            static changeContent = id => {
+                if (id == router.getCurrentContent()) return;
+                router.clearContent();
+                window.history.pushState(null, '', '#' + router.showContent(id));
+            };
+            static showContent = id => {
+                let e;
+                try {
+                    e = document.querySelector('section[content]#' + id);
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                if (!e) {
+                    try {
+                        e = document.querySelector('section[content]:has(#' + id + ')');
+                    }
+                    catch (ex) {
+                        console.log(ex);
+                    }
+                    if (!e) {
+                        try {
+                            if (document.getElementById(id)) return id;
+                        }
+                        catch (ex) {
+                            console.log(ex);
+                        }
+                    }
+                    if (!e) {
+                        id = 'error';
+                        e = document.querySelector('section[content]#error');
+                    }
+                }
+                e.classList.add('show');
+                return id;
+            };
+            static getCurrentContent = () => window.location.hash.substring(1) || 'home';
+            static initContent = () => window.history.replaceState(null, '', '#' + router.showContent(router.getCurrentContent()));
+            static onPopState = () => {
+                const shown = document.querySelector('section[content].show');
+                router.clearContent();
+                router.showContent(router.getCurrentContent());
+                if (!document.querySelector('section[content].show')) {
+                    shown.classList.add('show');
+                }
+            };
+        }
+        addEventListener('popstate', router.onPopState, false);
+        addEventListener('DOMContentLoaded', router.initContent, false);
+    </script>
+    <script>
+        class formValidater {
+            static add = (formSelecter, button, callback) => {
+                button?.addEventListener('click', e => {
+                    if (!document.querySelector(formSelecter + ' input:invalid')) {
+                        callback();
+                        e.preventDefault();
+                    }
+                }, false);
+            };
+        }
+        formValidater.add('#form-runner', document.querySelector('#form-runner button[type=submit]'), () => { /* write callback here. */ });
+        formValidater.add('#form-urakata', document.querySelector('#form-urakata button[type=submit]'), () => { /* write callback here. */ });
+    </script>
+    <script>
+        document.querySelector('#form-runner button[type=submit]').onclick = function () {
+            if (!document.querySelector('#form-runner form input:invalid')) {
+                submitRunnerForm();
+                return false;
+            }
+        };
+        function submitRunnerForm() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://script.google.com/macros/s/AKfycby2aW87Ba_kR9BPjbOLk1065KsJC0FOoqGInya-Z3AjPv3ck8V6meb0nW94tEL6sZthDg/exec');
+            xhr.setRequestHeader('Content-Type', 'text/plain');
+            xhr.timeout = 10000;
+
+            xhr.ontimeout = () => window.alert('タイムアウトしました。');
+            xhr.onerror = () => window.alert('エラーが発生しました。');
+            xhr.onload = function () {
+                document.querySelector("#form-runner form button[type='submit']").disabled = false;
+                if (xhr.status != 200) {
+                    window.alert('HTTPレスポンスエラー: ' + xhr.status);
+                    return;
+                }
+                const res = JSON.parse(xhr.responseText);
+                if (res.message) {
+                    window.alert(res.message);
+                    return;
+                }
+                window.alert(res.succeeded ? '解答を受け付けました。' : 'なんらかのエラーにより解答を受け付けられませんでした。')
+            };
+
+            const obj = {};
+            document.querySelectorAll("#form-runner form input:not(input[type='radio'])").forEach(e => obj[e.name] = e.value);
+            document.querySelectorAll("#form-runner input[type='radio']:checked").forEach(e => obj[e.name] = e.value);
+            xhr.send(JSON.stringify(obj));
+            document.querySelector("#form-runner form button[type='submit']").disabled = true;
+        }
+    </script>
+    <script>
+        document.querySelector('#form-urakata button[type=submit]').onclick = function () {
+            if (!document.querySelector('#form-urakata form input:invalid')) {
+                submitUrakataForm();
+                return false;
+            }
+        };
+        function submitUrakataForm() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://script.google.com/macros/s/AKfycbzXv5QDYMAA2Jx9DZOiEjt4JMEYrvh1_vukF0WN9g_CDXtp1KljxmERkvI6jd8-I5_pdw/exec');
+            xhr.setRequestHeader('Content-Type', 'text/plain');
+            xhr.timeout = 10000;
+
+            xhr.ontimeout = () => window.alert('タイムアウトしました。');
+            xhr.onerror = () => window.alert('エラーが発生しました。');
+            xhr.onload = function () {
+                document.querySelector("#form-urakata form button[type='submit']").disabled = false;
+                if (xhr.status != 200) {
+                    window.alert('HTTPレスポンスエラー: ' + xhr.status);
+                    return;
+                }
+                const res = JSON.parse(xhr.responseText);
+                if (res.message) {
+                    window.alert(res.message);
+                    return;
+                }
+                window.alert(res.succeeded ? '解答を受け付けました。' : 'なんらかのエラーにより解答を受け付けられませんでした。')
+            };
+
+            const obj = {};
+            document.querySelectorAll("#form-urakata form input[type='text']").forEach(e => obj[e.name] = e.value);
+            document.querySelectorAll("#form-urakata form textarea").forEach(e => obj[e.name] = e.value);
+            document.querySelectorAll("#form-urakata input[type='radio']:checked").forEach(e => obj[e.name] = e.value);
+            document.querySelectorAll("#form-urakata input[type='checkbox']:checked").forEach(e => obj[e.name] = e.value);
+            xhr.send(JSON.stringify(obj));
+            document.querySelector("#form-urakata form button[type='submit']").disabled = true;
+        }
+    </script>
+</body>
+</html>
