@@ -1,0 +1,13 @@
+        #form-urakata div[question] {
+            width: min(100%, 40rem);
+            margin-top: 3rem;
+            display: block;
+        }
+
+        #urakata-role:not(:has(#mirror:checked))~[mirror] {
+            display: none !important;
+        }
+
+        #urakata-role:not(:has(#time-keeper:checked))~[tk] {
+            display: none !important;
+        }
