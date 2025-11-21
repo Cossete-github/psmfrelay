@@ -1,0 +1,99 @@
+input[type="text"],
+input[type="text"]:focus {
+    width: 100%;
+    background: transparent;
+    border: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+}
+
+i:has(+input[type="text"]:not(:invalid))::before {
+    content: "";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='green' class='bi bi-check2-circle' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0'/%3E%3Cpath d='M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+}
+
+input[type="text"]:not(:invalid) {
+    width: calc(100% - 24px);
+}
+
+.window {
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+    font-size: 32px;
+}
+
+.window p {
+    margin: 0;
+    padding: 0;
+}
+
+.window input[type="radio"] {
+    opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+.window input[type="radio"] {
+    display: inline-block;
+    content: "";
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+}
+
+.window label {
+    margin-left: 32px;
+    height: 32px;
+    width: calc(100% - 32px);
+}
+
+.window input[type="radio"][yes]~label::after {
+    content: "はい";
+}
+
+.window input[type="radio"][no]~label::after {
+    content: "いいえ";
+}
+
+.window input[type="radio"]:not(:checked)+span:has(+label:hover)::before {
+    display: inline-block;
+    content: "";
+    width: 32px;
+    height: 32px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='white' class='bi bi-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+}
+
+.window input[type="radio"]:not(:checked)~label:hover {
+    margin-left: 0;
+}
+
+.window input[type="radio"]:checked+span::before {
+    display: inline-block;
+    content: "";
+    width: 32px;
+    height: 32px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='gold' class='bi bi-arrow-right' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+}
+
+.window input[type="radio"]:checked~label {
+    margin-left: 0;
+}
+
+
+.window:has(input[type="radio"][yes]:checked)~div>* {
+    display: auto;
+}
+
+.window:not(:has(input[type="radio"][yes]:checked))~div>* {
+    display: none !important;
+}

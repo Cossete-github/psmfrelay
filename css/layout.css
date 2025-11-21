@@ -1,0 +1,88 @@
+main {
+    /*
+            background: url("https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?_gl=1*hjnful*_ga*MTcyNTEwNjAyMi4xNzU1Njg4OTQ5*_ga_8JE65Q40S6*czE3NTU2ODg5NDgkbzEkZzEkdDE3NTU2ODg5NTMkajU1JGwwJGgw") no-repeat 0 0;
+            */
+    background-color: rgba(255, 243, 247, 0.5);
+    background-blend-mode: lighten;
+    background-size: 100vw;
+
+    min-height: 100vh;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: min-content auto;
+    align-items: start;
+}
+
+#sidebar-wrapper {
+    display: block;
+    height: 100vh;
+    min-width: 8rem;
+    border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    position: sticky;
+    top: 0px;
+    z-index: 826;
+    background-color: white;
+}
+
+#sidebar>nav {
+    display: block;
+    height: 100vh;
+    min-height: 0 !important;
+    max-height: min(auto, 100vh);
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border: 0;
+}
+
+#sidebar>nav::-webkit-scrollbar {
+    display: none;
+}
+
+#sidebar>nav>a {
+    width: 100%;
+}
+
+#sidebar>nav>a:hover {
+    color: deepskyblue;
+}
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: auto;
+    }
+
+    #sidebar-wrapper {
+        height: auto;
+        width: 100%;
+        border-right: 0 !important;
+    }
+
+    #sidebar {
+        border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+    }
+
+    #sidebar>nav {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        height: auto;
+        max-height: 12.5vh;
+    }
+
+    #sidebar>nav>a {
+        border-top: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+        border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+        width: auto;
+    }
+}
+
+main>section {
+    padding: .5rem .5rem 0 .5rem;
+}
+
+section[content]:not(.show) {
+    display: none !important;
+}
