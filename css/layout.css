@@ -1,7 +1,7 @@
 main {
-    /*
-            background: url("https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?_gl=1*hjnful*_ga*MTcyNTEwNjAyMi4xNzU1Njg4OTQ5*_ga_8JE65Q40S6*czE3NTU2ODg5NDgkbzEkZzEkdDE3NTU2ODg5NTMkajU1JGwwJGgw") no-repeat 0 0;
-            */
+    background: url("../img/pic3.png") no-repeat 0 0;
+    background-color: rgba(255, 243, 247, 0.83);
+    background-repeat: repeat-y;
     background-color: rgba(255, 243, 247, 0.5);
     background-blend-mode: lighten;
     background-size: 100vw;
@@ -85,4 +85,5 @@ main>section {
 
 section[content]:not(.show) {
     display: none !important;
+
 }
