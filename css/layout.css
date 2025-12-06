@@ -1,6 +1,5 @@
 main {
-    background: url("../img/pic3.png") repeat-y;
-    background-color: rgb(255 243 247 / 83%);
+    background: url("../img/pic3.png") rgb(255 243 247 / 83%) repeat-y;
     background-blend-mode: lighten;
     background-size: 100vw;
     min-height: 100vh;
@@ -84,6 +83,7 @@ section[content]:not(.show) {
     display: none !important;
 
 }
+
 
 
 
