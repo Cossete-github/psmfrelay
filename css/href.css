@@ -1,0 +1,4 @@
+[confirmedhref] [href]:not(a):hover {
+    color: blue;
+    text-decoration: underline;
+}
