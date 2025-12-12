@@ -4,15 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PS作品DQRTAマイフレンズリレーWEBサイトデモ</title>
+    <title>PS作品DQRTAマイフレンズリレーWEBサイト</title>
     <base target="_self" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/form.css" />
     <link rel="stylesheet" href="css/urakata.css" />
-    <link rel="stylesheet" href="css/runner_table.css"
+    <link rel="stylesheet" href="css/runner_table.css">
     <link rel="stylesheet" href="css/icon.css" />
+    <link rel="stylesheet" href="css/members.css" />
     <link rel="stylesheet" href="css/href.css" />
 </head>
 
@@ -27,7 +28,10 @@
                             日程</span></a>
                     <a href="#runner-list" class="list-group-item text-truncate"><i class="bi bi-person-arms-up"></i>
                         <span>走者一覧</span></a>
-                    </a>
+                    <a href="#mid-event" class="list-group-item text-truncate"><i class="bi bi-flag-fill"></i>
+                        <span>中間イベント</span></a>
+                    <a href="#form-mid-runner" class="list-group-item text-truncate"><i class="bi bi-bicycle"></i>
+                        <span>中間イベ走者募集フォーム</span></a>
                     <a href="#form-urakata" class="list-group-item text-truncate"><i
                             class="bi bi-hourglass-split"></i><span> 裏方募集フォーム</span></a>
                     <a href="#regulations" class="list-group-item text-truncate"><i
@@ -66,10 +70,12 @@
                         <div>
                             <p><s>【11月29日(土)】 ~23:59 走者募集期限</s></p>
                             <p><s>【12月5日(金)】 夜 走者発表</s></p>
+                            <p>【2月6日(金)】 23:59 中間イベント走者募集期限</p>
+                            <p>【2月14日(土)】 12:00 開会式 12:30出走(作品順テリワン→イルルカ)</p>
                             <p>【4月3日(金)】 23:59 走者ノルマ提出期限</p>
                             <p>【5月2日(土)】 9:00 開会式 10:00 出走(作品順5-8-4-7)</p>
                         </div>
-                        <div style="margin-top:3rem;">
+                        <div style="margin-top:2rem;">
                             <b>各作品時間目安</b>
                             <p>DQ5: 10:00 - 18:00</p>
                             <p>DQ8: 18:00 - 5:00(5月3日)</p>
@@ -233,6 +239,99 @@
                         </form>
                     </article>
                 </section>
+                <section content id="form-mid-runner">
+                    <h4>中間イベント走者募集フォーム</h4>
+                    <article>
+                        <form>
+                            <div style="width: min(100%, 40rem); margin-top:3rem; display: block;">
+                                <p>代表者のお名前とDiscordのユーザー名を記入お願いします。</p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_name_mid" id="leader_name_mid" placeholder="お名前"
+                                                    required />
+                                            </td>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_id_mid" id="leader_id_mid"
+                                                    placeholder="Discordユーザー名" required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: block;">
+                                <p>各作品を担当する走者のお名前とURLの記入をお願いします。</p>
+                                <details style="margin-bottom:1rem;">
+                                    <summary>注釈</summary>
+                                    <p>(注)両作品兼任可。</p>
+                                </details>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%;">担当作品</th>
+                                            <th style="width:30%;">走者名</th>
+                                            <th style="width:50%;">配信URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>テリワン</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name_tw" name="name_tw" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url_tw" name="url_tw" placeholder="https://xxx.xxx"
+                                                    required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>イルルカ</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name_iruruka" name="name_iruruka" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url_iruruka" name="url_iruruka" placeholder="https://xxx.xxx"
+                                                    required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: flex; flex-wrap: nowrap;">
+                                <div class="window" style="width: 256px; margin: 0 auto;">
+                                    <div style="margin-left:32px;font-size:16px;">
+                                        <p>運営「円滑な大会運営に</p>
+                                        <p>ご協力くださいますか？</p>
+                                    </div>
+                                    <hr style="margin:0;" />
+                                    <p>
+                                        <input type="radio" name="window_yesno_mid" id="window-yes_mid" value="yes"
+                                            yes /><span></span><label for="window-yes_mid"></label>
+                                    </p>
+                                    <p>
+                                        <input type="radio" name="window_yesno_mid" id="window-no_mid" value="no" no
+                                            checked /><span></span><label for="window-no_mid"></label>
+                                    </p>
+                                </div>
+                                <div style="text-align:center;">
+                                    <div>
+                                        <p>回答内容をご確認の上、誤りがなければ</p>
+                                        <p>下記ボタンを押してください。</p>
+                                        <button type="submit" class="btn btn-outline-primary">回答を送信</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 12rem;"></p>
+                        </form>
+                    </article>
+                </section>
                 <section content id="form-urakata">
                     <h4>裏方募集フォーム</h4>
                     <article>
@@ -352,9 +451,9 @@
                     <article>
                         <b>全作品共通</b>
                         <div>
-                            <p>計測区間</p>
+                            <p>計測期間</p>
                             <ul>
-                                <li>電源投入〜羽根ペン消失</li>
+                                <li>電源投入～羽根ペン消失</li>
                             </ul>
                             <p>禁止行為について</p>
                             <ul>
@@ -371,6 +470,7 @@
                             <ul>
                                 <li>意図的な状況再現および乱数調整と疑わしい行為</li>
                                 <li>カジノでの、景品交換以外でのコインの使用</li>
+                                <li>アニメティカの使用などによるセーブデータの改ざん</li>
                             </ul>
                         </div>
                         <div class="accordion">
@@ -409,6 +509,13 @@
                                         <ul>
                                             <li>不規則に移動するNPCがいるフロアを3秒以上不規則に歩く</li>
                                         </ul>
+                                        <p>再現切りに当たらない行動例</p>
+                                        <ul>
+                                            <li>戦闘</li>
+                                            <li>回復呪文・アイテムの使用</li>
+                                            <lI>種・木の実の使用</lI>
+                                            <li>不規則に移動するNPCがいないフロアでの時間経過</li>
+                                        </ul>
                                         <p>2章メタル狩り手順</p>
                                         <ul>
                                             <li>1. 速やかにフィールドに出る。</li>
@@ -424,7 +531,14 @@
                                             </li>
                                             <li>2, 3を繰り返す</li>
                                         </ul>
-                                        <p>2章メタル狩り手順や状況再現についての参考動画↓</p>
+                                        <p style="margin-top: 2rem;">例</p>
+                                        <ul>
+                                            <li>メタルではないエンカを狩った→状況問わず〇</li>
+                                            <li>リセット後、再現切りをせずに非メタルではないエンカを狩り、直後にメタルを狩った→×</li>
+                                            <li>リセット後、再現切りをしてメタルを狩った→〇</li>
+                                            <li>一度もリセットしていない状況でメタルを狩った→〇</li>
+                                        </ul>
+                                        <p style="margin-top: 2rem;">2章メタル狩り手順や状況再現についての参考動画↓</p>
                                         <p><a href="https://www.youtube.com/watch?v=WTTODbPeXQU" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=WTTODbPeXQU</a></p>
                                     </div>
                                 </div>
@@ -484,7 +598,6 @@
                                         <p>禁止</p>
                                         <ul>
                                             <li>プロビナ飛ばしなどの、ストーリーを破壊するバグの利用</li>
-                                            <li>アニメティカの使用などによるセーブデータの改ざん</li>
                                             <li>アルティメットヒッツ版(SLPM-87378および87379)以外の使用</li>
                                             <li>
                                                 Disc2以降でリセット後に後述の再現切りを行わず、<br />
@@ -561,6 +674,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQM');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQM" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>テリワン, イルルカ</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQM" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <a href="#accDQMregulation">こちらをご覧ください。</a>
+                                    </div>
+                                </div>
+                            </div>
                     </article>
                 </section>
                 <section content id="sites">
@@ -628,7 +755,7 @@
                                 <tr>
                                     <td>スナックまどかPS版シメさばはいかが？</td>
                                     <td href="https://www.youtube.com/@motiduki-madoka">望月まどか</td>
-                                    <td href="https://www.youtube.com/@haerukami.%E3%81%8B%E3%81%BF">かみ</td>
+                                    <td href="https://www.youtube.com/@haerukami">かみ</td>
                                     <td href="https://www.youtube.com/@okakamesi/featured">おかかメシ</td>
                                     <td href="https://www.youtube.com/@%E7%84%BC%E3%81%8D%E3%81%95%E3%81%B0-nol">焼きさば</td>
                                 </tr>
@@ -694,12 +821,75 @@
                 <section content id="member">
                     <h4>運営メンバー紹介(工事中)</h4>
                     <div style="margin-top:2rem;">
-                        <p>ジャック</p>
+                        <p><i class="ico-jack"></i>ジャック</p>
                         <p>夜凪</p>
                         <p>骨折</p>
                         <p>芦川T</p>
                         <p>とーま</p>
                         <p>HA-TO</p>
+                    </div>
+                </section>
+                <section content id="mid-event">
+                    <h4>中間イベント</h4>
+                    <p style="margin-top:2rem;">中間イベント①</p>
+                    <div>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMcalendar');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMcalendar" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>日程</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMcalendar" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p>【2月14日(土)】 12:00 開会式 12:30出走(作品順テリワン→イルルカ)</p>
+                                        <div style="margin-top:2rem;">
+                                            <b>各作品時間目安</b>
+                                            <p>テリワン: 12:30 - 14:00</p>
+                                            <p>イルルカ: 14:00 - 15:30</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMregulation');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMregulation" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>レギュレーション</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMregulation" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p>計測期間</p>
+                                        <ul>
+                                            <li>電源投入～「…TO BE CONTINUED」消失</li>
+                                        </ul>
+                                        <p>禁止</p>
+                                        <ul>
+                                            <li>みんさんモード</li>
+                                            <li>通信機能の使用</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMform');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMform" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>応募フォーム</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMform" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <a href="#form-mid-runner">こちらをご覧ください。</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section content id="error">
@@ -711,18 +901,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/rooter.js"></script>
     <script src="js/runner_api.js"></script>
+    <script src="js/runner_mid_api.js"></script>
     <script src="js/urakata_api.js"></script>
     <script src="js/scroller.js"></script>
     <script src="js/href.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
 
 
 
