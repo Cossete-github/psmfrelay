@@ -1,4 +1,7 @@
 document.querySelector('#form-mid-runner button[type=submit]').onclick = function () {
+    window.alert('現在募集を締め切っています！');
+    return;
+    /*
     if (!document.querySelector('#form-mid-runner form input:invalid')) {
         (() => {
             const xhr = new XMLHttpRequest();
@@ -30,4 +33,5 @@ document.querySelector('#form-mid-runner button[type=submit]').onclick = functio
         })();
         return false;
     }
+    */
 };
