@@ -4,14 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PS作品DQRTAマイフレンズリレーWEBサイトデモ</title>
+    <title>PS作品DQRTAマイフレンズリレーWEBサイト</title>
     <base target="_self" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/form.css" />
     <link rel="stylesheet" href="css/urakata.css" />
+    <link rel="stylesheet" href="css/runner_table.css">
     <link rel="stylesheet" href="css/icon.css" />
+    <link rel="stylesheet" href="css/members.css" />
+    <link rel="stylesheet" href="css/href.css" />
 </head>
 
 <body>
@@ -23,16 +26,24 @@
                             主催挨拶</span></a>
                     <a href="#calendar" class="list-group-item text-truncate"><i class="bi bi-calendar"></i><span>
                             日程</span></a>
-                    <a href="#requirements" class="list-group-item text-truncate"><i
-                            class="bi bi-check2-square"></i><span> 募集要項</span></a>
-                    <a href="#form-runner" class="list-group-item text-truncate"><i class="bi bi-controller"></i><span>
-                            走者募集フォーム</span></a>
+                    <a href="#runner-list" class="list-group-item text-truncate"><i class="bi bi-person-arms-up"></i>
+                        <span>走者一覧</span></a>
+                    <a href="#mid-event" class="list-group-item text-truncate"><i class="bi bi-flag-fill"></i>
+                        <span>中間イベント</span></a>
                     <a href="#form-urakata" class="list-group-item text-truncate"><i
                             class="bi bi-hourglass-split"></i><span> 裏方募集フォーム</span></a>
                     <a href="#regulations" class="list-group-item text-truncate"><i
                             class="bi bi-clipboard2-check"></i><span> レギュレーション</span></a>
                     <a href="#sites" class="list-group-item text-truncate"><i class="bi bi-compass"></i><span>
                             公式サイトリンク集</span></a>
+                    <a href="#member" class="list-group-item text-truncate"><i class="bi bi-people"></i><span>
+                            運営メンバー紹介</span></a>
+                    <a href="#requirements" class="list-group-item text-truncate"><i
+                            class="bi bi-check2-square"></i><span> 募集要項</span></a>
+                    <a href="#form-runner" class="list-group-item text-truncate"><i class="bi bi-controller"></i><span>
+                            <s>走者募集フォーム</s></span></a>
+                    <a href="#form-mid-runner" class="list-group-item text-truncate"><i class="bi bi-bicycle"></i>
+                        <span><s>中間イベ走者募集フォーム</s></span></a>
                 </nav>
             </aside>
         </div>
@@ -57,12 +68,14 @@
                     <h4>日程</h4>
                     <article>
                         <div>
-                            <p>【11月29日(土)】 ~23:59 走者募集期限</p>
-                            <p>【12月5日(金)】 夜 走者発表</p>
-                            <p>【4月4日(土)】 0:00 走者ノルマ提出期限</p>
+                            <p><s>【11月29日(土)】 ~23:59 走者募集期限</s></p>
+                            <p><s>【12月5日(金)】 夜 走者発表</s></p>
+                            <p><s>【2月6日(金)】 23:59 中間イベント走者募集期限</s></p>
+                            <p>【2月14日(土)】 12:00 開会式 12:30出走(作品順テリワン→イルルカ)</p>
+                            <p>【4月3日(金)】 23:59 走者ノルマ提出期限</p>
                             <p>【5月2日(土)】 9:00 開会式 10:00 出走(作品順5-8-4-7)</p>
                         </div>
-                        <div style="margin-top:3rem;">
+                        <div style="margin-top:2rem;">
                             <b>各作品時間目安</b>
                             <p>DQ5: 10:00 - 18:00</p>
                             <p>DQ8: 18:00 - 5:00(5月3日)</p>
@@ -92,7 +105,7 @@
                     <h4>走者募集フォーム</h4>
                     <article>
                         <form>
-                            <p class="lead">※先着14チーム限定！</p>
+                            <h3 class="lead" style="color:red;">※走者募集は現在締め切っています！！</h3>
                             <div style="width: min(100%, 40rem); margin-top:3rem; display: block;">
                                 <p>代表者のお名前とDiscordのユーザー名を記入お願いします。</p>
                                 <table class="table">
@@ -226,6 +239,100 @@
                         </form>
                     </article>
                 </section>
+                <section content id="form-mid-runner">
+                    <h4>中間イベント走者募集フォーム</h4>
+                    <article>
+                        <form>
+                            <h3 class="lead" style="color:red;">※中間イベント走者募集は現在締め切っています！！</h3>
+                            <div style="width: min(100%, 40rem); margin-top:3rem; display: block;">
+                                <p>代表者のお名前とDiscordのユーザー名を記入お願いします。</p>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_name_mid" id="leader_name_mid" placeholder="お名前"
+                                                    required />
+                                            </td>
+                                            <td class="form-group" style="width:50%;">
+                                                <i></i>
+                                                <input type="text" name="leader_id_mid" id="leader_id_mid"
+                                                    placeholder="Discordユーザー名" required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: block;">
+                                <p>各作品を担当する走者のお名前とURLの記入をお願いします。</p>
+                                <details style="margin-bottom:1rem;">
+                                    <summary>注釈</summary>
+                                    <p>(注)両作品兼任可。</p>
+                                </details>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%;">担当作品</th>
+                                            <th style="width:30%;">走者名</th>
+                                            <th style="width:50%;">配信URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>テリワン</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name_tw" name="name_tw" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url_tw" name="url_tw" placeholder="https://xxx.xxx"
+                                                    required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>イルルカ</td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="name_iruruka" name="name_iruruka" required />
+                                            </td>
+                                            <td class="form-group">
+                                                <i></i>
+                                                <input type="text" id="url_iruruka" name="url_iruruka" placeholder="https://xxx.xxx"
+                                                    required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width: min(100%, 40rem); margin-top: 3rem; display: flex; flex-wrap: nowrap;">
+                                <div class="window" style="width: 256px; margin: 0 auto;">
+                                    <div style="margin-left:32px;font-size:16px;">
+                                        <p>運営「円滑な大会運営に</p>
+                                        <p>ご協力くださいますか？</p>
+                                    </div>
+                                    <hr style="margin:0;" />
+                                    <p>
+                                        <input type="radio" name="window_yesno_mid" id="window-yes_mid" value="yes"
+                                            yes /><span></span><label for="window-yes_mid"></label>
+                                    </p>
+                                    <p>
+                                        <input type="radio" name="window_yesno_mid" id="window-no_mid" value="no" no
+                                            checked /><span></span><label for="window-no_mid"></label>
+                                    </p>
+                                </div>
+                                <div style="text-align:center;">
+                                    <div>
+                                        <p>回答内容をご確認の上、誤りがなければ</p>
+                                        <p>下記ボタンを押してください。</p>
+                                        <button type="submit" class="btn btn-outline-primary">回答を送信</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 12rem;"></p>
+                        </form>
+                    </article>
+                </section>
                 <section content id="form-urakata">
                     <h4>裏方募集フォーム</h4>
                     <article>
@@ -341,13 +448,20 @@
                 </section>
                 <section content id="regulations">
                     <h4>レギュレーション</h4>
-                    <p class="lead">※本番までに更新される可能性があります。</p>
+                    <p class="lead">※本番までに予告なく更新される可能性があります。</p>
                     <article>
                         <b>全作品共通</b>
                         <div>
+                            <p>計測区間</p>
+                            <ul>
+                                <li>タイマースタート: 電源投入</li>
+                                <li>タイマーストップ: 羽根ペン消失</li>
+                                <li>必ず上記タイミングでタイマースタート/ストップすること。</li>
+                            </ul>
                             <p>禁止行為について</p>
                             <ul>
-                                <li>禁止行為が発覚した場合、運営の協議の元、タイム加算/失格/その他のペナルティを課す場合があります。</p>
+                                <li>禁止行為が発覚した場合、運営の協議の元、タイム加算/失格/その他のペナルティを課す場合があります。</li>
+                                <li>判断に迷う場面が発生した場合、速やかに運営に報告し指示を仰いでください。</li>
                             </ul>
                             <p>用語の定義</p>
                             <ul>
@@ -359,6 +473,7 @@
                             <ul>
                                 <li>意図的な状況再現および乱数調整と疑わしい行為</li>
                                 <li>カジノでの、景品交換以外でのコインの使用</li>
+                                <li>アニメティカの使用などによるセーブデータの改ざん</li>
                             </ul>
                         </div>
                         <div class="accordion">
@@ -375,10 +490,13 @@
                                         <p id="fDQ4">禁止</p>
                                         <ul>
                                             <li>
-                                                リセット後に再現切りをせずメタルから経験値を得る行為<br />
+                                                リセット後に再現切りをせずメタルから経験値を得る行為。<br />
                                                 ただし、2章に限り、後述のメタル狩りの手順に従う場合は許可する。<br />
                                                 手順からそれた場合、メタルから経験値を得る前に再現切りを行うか、<br />
                                                 リセットをしなければならない。<br />
+                                            </li>
+                                            <li>
+                                                下記メタル狩り手順3-b.に則ってメタルを狩った直後、フィールドで種・木の実を使用すること。
                                             </li>
                                         </ul>
                                         <p>許可</p>
@@ -392,24 +510,39 @@
                                         </ul>
                                         <p>再現切りの手順例</p>
                                         <ul>
-                                            <li>不規則に移動するNPCがいるフロアを累計3秒以上不規則に歩く</li>
+                                            <li>不規則に移動するNPCがいるフロアを3秒以上不規則に歩く</li>
+                                        </ul>
+                                        <p>再現切りに当たらない行動例</p>
+                                        <ul>
+                                            <li>戦闘</li>
+                                            <li>回復呪文・アイテムの使用</li>
+                                            <lI>種・木の実の使用</lI>
+                                            <li>不規則に移動するNPCがいないフロアでの時間経過</li>
                                         </ul>
                                         <p>2章メタル狩り手順</p>
                                         <ul>
-                                            <li>1. 速やかにフィールドに出て、エンカを出す。</li>
-                                            <li>2. メタル以外が出現した場合、全体逃げをする。味方キャラのHPが0になった場合はリセットする。</li>
+                                            <li>1. 速やかにフィールドに出る。</li>
+                                            <li>2. 速やかにエンカを出す。</li>
                                             <li>
-                                                メタルの1ターン目は全員聖水を使用し、2ターン目はアリーナ聖水、他2人打撃とする。<br />
-                                                撃破した場合は速やかにエンドールに戻り、リセットまたは再現切りをする。それまで次のメタルを倒してはならない。
+                                                3-a. メタル以外が出現した場合、全体逃げをする。味方キャラのHPが0になった場合はリセットする。<br />
+                                                逃走成功後、味方のHPが全快(味方キャラ全ての現在HPがそれぞれの最大HPと等しい状態)でない場合、まんたんで全快にする。<br />
+                                                全快にならなかった場合は速やかにエンドールに戻り、リセットまたは再現切りをする。
                                             </li>
                                             <li>
-                                                3.
-                                                メタル以外との戦闘後、味方のHPが全快でない場合、まんたんで全快(味方キャラ全ての現在HPがそれぞれの最大HPと等しい状態)にする。<br />
-                                                全快にならなかった場合は速やかにエンドールに戻り、リセットまたは再現切りをする。それまで次のメタルを倒してはならない。
+                                                3-b. メタルが出現した場合、1ターン目は全員聖水を使用し、2ターン目はアリーナ聖水、他2人打撃とする。<br />
+                                                撃破した場合は速やかにエンドールに戻り、リセットまたは再現切りをする。
                                             </li>
-                                            <li>4. 速やかに次のエンカを出す。</li>
-                                            <li>2から4を繰り返す</li>
+                                            <li>2, 3を繰り返す</li>
                                         </ul>
+                                        <p style="margin-top: 2rem;">例</p>
+                                        <ul>
+                                            <li>メタルではないエンカを狩った→状況問わず〇</li>
+                                            <li>リセット後、再現切りをせずに非メタルではないエンカを狩り、直後にメタルを狩った→×</li>
+                                            <li>リセット後、再現切りをしてメタルを狩った→〇</li>
+                                            <li>一度もリセットしていない状況でメタルを狩った→〇</li>
+                                        </ul>
+                                        <p style="margin-top: 2rem;">2章メタル狩り手順や状況再現についての参考動画↓</p>
+                                        <p><a href="https://www.youtube.com/watch?v=WTTODbPeXQU" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=WTTODbPeXQU</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -439,6 +572,19 @@
                                             <li>NPCとの壁越しでの会話</li>
                                             <li>戦闘中の死者発生後のスカラつなぎ</li>
                                         </ul>
+                                        <p>ペナルティ例</p>
+                                        <ul>
+                                            <li>
+                                                アイテム増殖が発生した場合、増えた分のアイテムは使用しないこと。<br />
+                                                捨てられるアイテムの場合は、捨てること。<br />
+                                            </li>
+                                            <li>空売りが発生した場合、当該アイテムを即座に捨てること。</li>
+                                            <li>
+                                                主人公の作戦を変えた場合は、発覚次第めいれいさせろに戻すこと。<br />
+                                                ベラの作戦を変更した場合は、失格とする。<br />
+                                                (例)主人公の作戦を変えてしまったので、同様の操作でめいれいさせろに戻した→〇
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -455,10 +601,9 @@
                                         <p>禁止</p>
                                         <ul>
                                             <li>プロビナ飛ばしなどの、ストーリーを破壊するバグの利用</li>
-                                            <li>アニメティカの使用などによるセーブデータの改ざん</li>
                                             <li>アルティメットヒッツ版(SLPM-87378および87379)以外の使用</li>
                                             <li>
-                                                Disc2以後、リセット後に後述の再現切りを行わず<br />
+                                                Disc2以降でリセット後に後述の再現切りを行わず、<br />
                                                 メタルから経験値を得るまたはラスボスを撃破する行為
                                             </li>
                                         </ul>
@@ -472,7 +617,14 @@
                                         </ul>
                                         <p>再現切りの手順例</p>
                                         <ul>
-                                            <li>不規則に動くNPCがいるフロアを累計3秒以上不規則に歩く</li>
+                                            <li>不規則に動くNPCがいるフロアを3秒以上不規則に歩く</li>
+                                        </ul>
+                                        <p>ペナルティ例</p>
+                                        <ul>
+                                            <li>
+                                                プロビナ飛ばしが発生した場合もプロビナ山頂のりゅうき兵を倒すこと。<br />
+                                                (例)プロビナ飛ばしが発生したが、そのままストーリーを進めてりゅうき兵を倒した→〇
+                                            </li>
                                         </ul>
                                         <p>その他</p>
                                         <ul>
@@ -496,11 +648,10 @@
                                     <div class="accordion-body">
                                         <p>禁止</p>
                                         <ul>
+                                            <li>連射スルーバグ</li>
                                             <li>
                                                 人(NPCおよびPC)や物、地面などをすり抜ける操作(船落ち、ジョロの実貫通バグなど)<br />
-                                                ただし、その後速やかに[全滅, リレミト, 任意の場所にルーラ/キメラのつばさ/かぜのぼうし]のいずれかを行った場合は不問とする。
                                             </li>
-                                            <li>連射スルーバグ</li>
                                         </ul>
                                         <p>許可</p>
                                         <ul>
@@ -509,12 +660,41 @@
                                             <li>高台全滅バグ</li>
                                             <li>薬草園の洞窟の坂の斜め走法による逆走</li>
                                         </ul>
+                                        <p>ペナルティ例</p>
+                                        <ul>
+                                            <li>
+                                                すり抜けが発生した場合、ペナルティとして以下の行動を行うこと。
+                                            </li>
+                                            <li>
+                                                1. 速やかに[全滅, リレミト, 任意の場所にルーラ/キメラのつばさ/かぜのぼうし]のいずれかで移動する。<br />
+                                                (例)船落ちが発生したので即座にルーラで移動した→〇
+                                            </li>
+                                            <li>
+                                                2. 1.が実行できない場合、正常な状態に戻るまで操作をやめる。戦闘が発生したら逃げるのみを行う。<br />
+                                                (例)リーザス地方に向かう際中に床落ちが発生したので、地上に戻るまで操作をやめた→〇
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQM');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQM" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>テリワン, イルルカ</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQM" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <a href="#accDQMregulation">こちらをご覧ください。</a>
                                     </div>
                                 </div>
                             </div>
                     </article>
                 </section>
                 <section content id="sites">
+                    <h4>公式サイトリンク集</h4>
                     <nav class="list-group rounded-0 text-sm-start" style="width:min(100%, 20rem)">
                         <a href="https://www.youtube.com/@マイフレンズリレー" target="_blank" rel="noopener noreferrer"
                             class="list-group-item text-truncate"><i class="bi bi-youtube"></i><span>
@@ -527,6 +707,251 @@
                             class="list-group-item text-truncate"><i class="bi bi-twitter-x"></i><span> 公式X</span></a>
                     </nav>
                 </section>
+                <section content id="runner-list">
+                        <h4>走者一覧(敬称略)</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>チーム名</th>
+                                    <th>DQ4</th>
+                                    <th>DQ5</th>
+                                    <th>DQ7</th>
+                                    <th>DQ8</th>
+                                </tr>
+                            </thead>
+                            <tbody confirmedhref>
+                                <tr>
+                                    <td>Quartetto Sword</td>
+                                    <td href="https://youtube.com/@ulpo2525">ウルポ</td>
+                                    <td href="https://youtube.com/@bunmaru-bunbun">ぶんまる</td>
+                                    <td href="https://youtube.com/@ulpo2525">ウルポ</td>
+                                    <td href="https://www.twitch.tv/enmeiq">エンメイ</td>
+                                </tr>
+                                <tr>
+                                    <td>コーミズフレンズ</td>
+                                    <td href="https://www.twitch.tv/yamapei2525">ヤマペイ</td>
+                                    <td href="https://twitch.tv/norainu_3">のらこ</td>
+                                    <td href="https://twitch.tv/ruku_ta">ルク</td>
+                                    <td href="https://twitch.tv/eagleeyes34">eagle</td>
+                                </tr>
+                                <tr>
+                                    <td>ばふばフレンズ</td>
+                                    <td href="https://www.twitch.tv/wisteria_rta">Wisteria</td>
+                                    <td href="https://www.twitch.tv/gyukoro">ぎゅうころ</td>
+                                    <td href="https://www.twitch.tv/riap_riap">りあぴー</td>
+                                    <td href="https://www.twitch.tv/gensouff">gensou</td>
+                                </tr>
+                                <tr>
+                                    <td>フロンティア・ブレイカーズ</td>
+                                    <td href="https://www.youtube.com/@Begirama">Begirama</td>
+                                    <td href="https://www.youtube.com/@M_1370">M1370</td>
+                                    <td href="https://www.youtube.com/@peach_rta">peach</td>
+                                    <td href="https://www.youtube.com/@Echigo_DQ8">越後の亡霊</td>
+                                </tr>
+                                <tr>
+                                    <td>天空に広がる砂糖水</td>
+                                    <td href="https://www.youtube.com/@%E3%81%96%E3%82%89%E3%82%81%E3%81%B3%E3%82%88%E3%82%8A">ざらめ</td>
+                                    <td href="https://www.youtube.com/@%E5%A4%A9%E7%A9%BA%E3%81%AE%E3%82%93%E3%81%B3%E3%82%8A">そら</td>
+                                    <td href="https://www.youtube.com/@%E3%81%9F%E3%81%8B%E3%81%B2%E3%82%8D-n9i">たかひろ</td>
+                                    <td href="https://www.youtube.com/@H2O_2023">H2O</td>
+                                </tr>
+                                <tr>
+                                    <td>スナックまどかPS版シメさばはいかが？</td>
+                                    <td href="https://www.youtube.com/@motiduki-madoka">望月まどか</td>
+                                    <td href="https://www.youtube.com/@haerukami">かみ</td>
+                                    <td href="https://www.youtube.com/@okakamesi/featured">おかかメシ</td>
+                                    <td href="https://www.youtube.com/@%E7%84%BC%E3%81%8D%E3%81%95%E3%81%B0-nol">焼きさば</td>
+                                </tr>
+                                <tr>
+                                    <td>SPICE♂FAMILY</td>
+                                    <td href="https://www.youtube.com/@misuchiiiii">みすち</td>
+                                    <td href="https://www.twitch.tv/gagamilky">みるきぃ</td>
+                                    <td href="https://www.nicovideo.jp/user/4178159">Rou</td>
+                                    <td href="https://www.youtube.com/@Ann_pan1227/streams">あんぱん</td>
+                                </tr>
+                                <tr>
+                                    <td>たすぱが全部やります！</td>
+                                    <td href="https://live.nicovideo.jp/watch/user/28916779">marty</td>
+                                    <td href="https://www.youtube.com/@%E4%BC%9D%E9%87%8E%E3%81%A6%E3%81%A4">伝野てつ</td>
+                                    <td href="https://www.twitch.tv/utsusan">鬱さん</td>
+                                    <td href="https://live.nicovideo.jp/watch/user/17545463">たすぱ</td>
+                                </tr>
+                                <tr>
+                                    <td>ーフレンズ</td>
+                                    <td href="https://www.twitch.tv/gya_su">ギャース</td>
+                                    <td href="https://www.youtube.com/@%E3%83%95%E3%83%8F%E4%BA%8C%E3%83%AB-s6w">フハニル</td>
+                                    <td href="https://www.youtube.com/@tomanico334">とーま</td>
+                                    <td href="https://www.youtube.com/@%E3%81%A8%E3%82%8C%E3%81%A3%E3%81%B4%E3%81%83">トレジャー</td>
+                                </tr>
+                                <tr>
+                                    <td>ホラゲに負けない導かれし戦士たち</td>
+                                    <td href="https://www.youtube.com/@goro_itsumi">いつみ五郎</td>
+                                    <td href="https://www.youtube.com/channel/UCzhGXSurC95NeiU-WlgN1qQ">りゅう</td>
+                                    <td href="https://www.twitch.tv/shari6">しゃり</td>
+                                    <td href="https://www.youtube.com/channel/UCgwPSffgjeFQHeBrALUfBeA">ゆー</td>
+                                </tr>
+                                <tr>
+                                    <td>におうだちから始めるどとうのタンバリン</td>
+                                    <td href="https://www.youtube.com/@kyo_ka_s">香歌</td>
+                                    <td href="https://youtube.com/@lilia_momose">桃瀬りりあ</td>
+                                    <td href="https://www.youtube.com/@Ritolove0406">リトラブ</td>
+                                    <td href="https://www.youtube.com/@Maimai_no_esa">まいまい</td>
+                                </tr>
+                                <tr>
+                                    <td>Time-Limit Game Players</td>
+                                    <td href="https://live.nicovideo.jp/watch/user/78233279">lis</td>
+                                    <td href="https://www.youtube.com/@GoMoKu141">ごもく</td>
+                                    <td href="https://youtube.com/@pon_gamech">ぽん</td>
+                                    <td href="https://youtube.com/@TEE_RTA">tee</td>
+                                </tr>
+                                <tr>
+                                    <td>ハッピーーーーーーーーーーーーーーーーーーーーーーーーセット</td>
+                                    <td href="https://youtube.com/@aliceyasan">ありすや</td>
+                                    <td href="https://youtube.com/@machinaxxx">マキナ</td>
+                                    <td href="https://youtube.com/@clione_ch">くりおね</td>
+                                    <td href="https://youtube.com/@kkeiru">けいる</td>
+                                </tr>
+                                <tr>
+                                    <td>運営チーム</td>
+                                    <td href="https://www.youtube.com/@doranana_">骨折</td>
+                                    <td href="https://www.nicovideo.jp/user/97005363">芦川T</td>
+                                    <td href="https://www.youtube.com/@jackdqrta3085">ジャック</td>
+                                    <td href="https://www.youtube.com/@HA-TOhec100a">HA-TO</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </section>
+                <section content id="member">
+                    <h4>運営メンバー紹介(工事中)</h4>
+                    <div style="margin-top:2rem;">
+                        <p><i class="ico-jack"></i>ジャック</p>
+                        <p>夜凪</p>
+                        <p>骨折</p>
+                        <p>芦川T</p>
+                        <p>とーま</p>
+                        <p>HA-TO</p>
+                    </div>
+                </section>
+                <section content id="mid-event">
+                    <h4>中間イベント</h4>
+                    <p style="margin-top:2rem;">中間イベント①</p>
+                    <div>
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMrunner');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMrunner" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>走者一覧(敬称略)</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMrunner" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>DQM1(テリワン)</th>
+                                                    <th>DQM2(イルルカ)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody confirmedhref>
+                                                <tr>
+                                                    <td href="https://live.nicovideo.jp/watch/user/28916779">marty</td>
+                                                    <td href="https://live.nicovideo.jp/watch/user/28916779">marty</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://www.youtube.com/@Echigo_DQ8">越後の亡霊</td>
+                                                    <td href="https://www.youtube.com/@jackdqrta3085">ジャック</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://www.nicovideo.jp/user/5032315">きゅー(･∀･)</td>
+                                                    <td href="https://www.nicovideo.jp/user/5032315">きゅー(･∀･)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://www.youtube.com/@aliceyasan">ありすや</td>
+                                                    <td href="https://www.youtube.com/@kkeiru">けいる</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://www.youtube.com/@%E5%A4%A9%E7%A9%BA%E3%81%AE%E3%82%93%E3%81%B3%E3%82%8A">そら</td>
+                                                    <td href="https://www.twitch.tv/sanchan0358">さんちゃん</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://youtube.com/@machinaxxx?si=zTh9zGvPtldabhhR">マキナ/machina</td>
+                                                    <td href="https://youtube.com/@ha-tohec100a?si=2widoENh5qDnU2m-">HA-TO</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://youtube.com/@ritolove0406">リトラブ</td>
+                                                    <td href="https://www.youtube.com/@tomanico334">とーま</td>
+                                                </tr>
+                                                <tr>
+                                                    <td href="https://www.twitch.tv/riamuouji">おにおん</td>
+                                                    <td href="https://www.twitch.tv/riamuouji">おにおん</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMcalendar');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMcalendar" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>日程</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMcalendar" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p>【2月14日(土)】 12:00 開会式 12:30出走(作品順テリワン→イルルカ)</p>
+                                        <div style="margin-top:2rem;">
+                                            <b>各作品時間目安</b>
+                                            <p>テリワン: 12:30 - 15:00</p>
+                                            <p>イルルカ: 15:00 - 17:30</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMregulation');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMregulation" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>レギュレーション</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMregulation" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p>計測区間</p>
+                                        <ul>
+                                            <li>タイマースタート: 電源投入</li>
+                                            <li>タイマーストップ: 「…TO BE CONTINUED」消失</li>
+                                            <li>必ず上記タイミングでタイマースタート/ストップすること。</li>
+                                        </ul>
+                                        <p>禁止</p>
+                                        <ul>
+                                            <li>みんさんモード</li>
+                                            <li>通信機能の使用</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button onclick="scr('#accDQMform');" class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#accDQMform" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                        <b>応募フォーム</b>
+                                    </button>
+                                </h2>
+                                <div id="accDQMform" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <a href="#form-mid-runner">こちらをご覧ください。</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section content id="error">
                     その方向には ダレモイナイ。
                 </section>
@@ -536,8 +961,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/rooter.js"></script>
     <script src="js/runner_api.js"></script>
+    <script src="js/runner_mid_api.js"></script>
     <script src="js/urakata_api.js"></script>
     <script src="js/scroller.js"></script>
+    <script src="js/href.js"></script>
 </body>
 
 </html>
