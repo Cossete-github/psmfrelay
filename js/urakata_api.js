@@ -1,4 +1,7 @@
 document.querySelector('#form-urakata button[type=submit]').onclick = function () {
+    window.alert('現在募集を締め切っています！');
+    return;
+    /*
     if (!document.querySelector('#form-urakata form input:invalid')) {
         (() => {
             const xhr = new XMLHttpRequest();
@@ -31,5 +34,5 @@ document.querySelector('#form-urakata button[type=submit]').onclick = function (
             document.querySelector("#form-urakata form button[type='submit']").disabled = true;
         })();
         return false;
-    }
+    }*/
 };
