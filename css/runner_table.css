@@ -8,3 +8,15 @@
 #runner-list table tr:nth-child(even) td {
     background-color: white;
 }
+
+#results table {
+    max-width: 48rem;
+}
+
+#results table tr:nth-child(odd) td {
+    background-color: lightcyan;
+}
+
+#results table tr:nth-child(even) td {
+    background-color: white;
+}
